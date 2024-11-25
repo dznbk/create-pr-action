@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 
-# GitHub から Git タグをまとめてフェッチして、最新バージョンを取り出す
-git fetch --tag 2 > /dev/null
+# GitHubからGitタグをまとめてフェッチして、最新バージョンを取り出す
+git fetch --tag 2>/dev/null
 version="$(git tag --sort=-v:refname | head -1 | sed 's/^v//')"
 
 # 指定されたバージョンアップレベルに基づいて、新しいバージョンを算出
@@ -13,8 +13,8 @@ case "$1" in
   patch) patch="$((patch + 1))" ;;
 esac
 
-# GitHub へフルバージョンタグとメジャーバージョンタグをプッシュ
+# GitHubへフルバージョンタグとメジャーバージョンタグをプッシュ
 git tag "v${major}.${minor}.${patch}"
-git tag --force "v${major}" > /dev/null 2>&1
-git push --force --tags > /dev/null 2>&1
+git tag --force "v${major}" >/dev/null 2>&1
+git push --force --tags >/dev/null 2>&1
 echo "v${major}.${minor}.${patch}"
