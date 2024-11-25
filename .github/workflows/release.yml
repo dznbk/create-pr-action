@@ -14,6 +14,7 @@ jobs:
       contents: write
     steps:
       - uses: actions/checkout@v4
+      - run: chmod +x .github/scripts/bump.sh # スクリプトに実行権限を付与
       - env:
           USERNAME: github-actions[bot]
           EMAIL: 41898282+github-actions[bot]@users.noreply.github.com
